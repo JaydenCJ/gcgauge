@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1018" viewBox="0 0 1000 1018" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14">
+  <!-- Complete terminal transcript of real runs of `gcgauge report` and
+       `gcgauge diff` against the committed example logs. Text is verbatim
+       command output; regenerate the logs with examples/generate_gc_log.py. -->
+  <rect width="1000" height="1018" rx="10" fill="#0d1117"/>
+  <rect width="1000" height="34" rx="10" fill="#161b22"/>
+  <rect y="20" width="1000" height="14" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="17" r="6" fill="#28c840"/>
+  <text x="500" y="22" fill="#8b949e" text-anchor="middle" font-size="12">gcgauge — pause percentiles, heap trends, leak indicators</text>
+  <g fill="#c9d1d9" xml:space="preserve">
+    <text x="24" y="62"><tspan fill="#7ee787">$</tspan> gcgauge report examples/g1-leak.log</text>
+    <text x="24" y="86">gcgauge report — examples/g1-leak.log</text>
+    <text x="24" y="110" fill="#8b949e">format: unified   collector: G1   clock: uptime</text>
+    <text x="24" y="134" fill="#8b949e">events: 173 (160 pauses, 13 concurrent)   window: 12.67s -&gt; 1789.43s (29.6 min)</text>
+    <text x="24" y="170">Pause percentiles (ms)</text>
+    <text x="24" y="194" fill="#8b949e">  class  count     p50     p90     p95     p99     max     total</text>
+    <text x="24" y="218">  young    116   13.96   23.32   27.48   28.96   29.31   1762.97</text>
+    <text x="24" y="242">  mixed     13   21.96   29.00   29.01   29.01   29.01    285.56</text>
+    <text x="24" y="266" fill="#d29922">  full      31  715.66  883.20  887.67  899.37  899.37  21222.11</text>
+    <text x="24" y="290">  all      160   17.86  675.24  828.69  887.67  899.37  23270.63</text>
+    <text x="24" y="326">Throughput 98.69% — 23.27s paused of 1776.76s   Allocation rate 33.62 MB/s</text>
+    <text x="24" y="362">Heap (total 4096.0 MB)</text>
+    <text x="24" y="386">  post-GC floor: 731.00 MB -&gt; 3645.00 MB   slope <tspan fill="#f85149">+110.150 MB/min</tspan>   r²=0.946 (160 samples, all collections basis)</text>
+    <text x="24" y="410">  post-GC occupancy, last quarter: 89.6% of heap</text>
+    <text x="24" y="434">  full GC: 31 total (0 first half -&gt; 31 second half), avg reclaim 5.4% of heap</text>
+    <text x="24" y="470">Leak indicators — verdict: <tspan fill="#f85149">LIKELY</tspan> (score 10/14)</text>
+    <text x="24" y="494">  [<tspan fill="#f85149">critical</tspan>] rising post-GC floor      +110.15 MB/min over 29.6 min, r²=0.95 (all collections basis)</text>
+    <text x="24" y="518">  [<tspan fill="#d29922">warn    </tspan>] full GC frequency growth  0 full GC in the first half -&gt; 31 in the second</text>
+    <text x="24" y="542">  [<tspan fill="#d29922">warn    </tspan>] low full-GC reclaim       recent full GCs reclaim only 5.5% of heap</text>
+    <text x="24" y="566">  [<tspan fill="#d29922">warn    </tspan>] evacuation failure        31 event(s) with to-space exhausted / promotion failed</text>
+    <text x="24" y="590">  [<tspan fill="#d29922">warn    </tspan>] post-GC occupancy         89.6% of heap still live in the last quarter of the run</text>
+    <text x="24" y="614">  [<tspan fill="#7ee787">ok      </tspan>] OutOfMemoryError          not present</text>
+    <text x="24" y="650"><tspan fill="#7ee787">$</tspan> gcgauge diff examples/g1-steady.log examples/g1-leak.log</text>
+    <text x="24" y="674">gcgauge diff — baseline: examples/g1-steady.log   current: examples/g1-leak.log</text>
+    <text x="24" y="698" fill="#8b949e">threshold: 10.0%</text>
+    <text x="24" y="734" fill="#8b949e">metric             baseline  current      delta     verdict</text>
+    <text x="24" y="758">p50 pause (ms)        10.21    17.86     <tspan fill="#f85149">+75.0%</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="782">p90 pause (ms)        16.49   675.24   <tspan fill="#f85149">+3994.3%</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="806">p99 pause (ms)        18.43   887.67   <tspan fill="#f85149">+4717.2%</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="830">max pause (ms)        18.52   899.37   <tspan fill="#f85149">+4756.2%</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="854">GC overhead (%)        0.10     1.31   <tspan fill="#f85149">+1210.0%</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="878">full GC / min          0.00     1.05        <tspan fill="#f85149">new</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="902">alloc rate (MB/s)     36.73    33.62      -8.5%        info</text>
+    <text x="24" y="926">leak verdict           none   likely  <tspan fill="#f85149">escalated</tspan>  <tspan fill="#f85149">regression</tspan></text>
+    <text x="24" y="962" fill="#f85149">7 regression(s) beyond the 10.0% threshold</text>
+    <text x="24" y="998" fill="#8b949e">exit code 1 — wire it straight into CI</text>
+  </g>
+</svg>
