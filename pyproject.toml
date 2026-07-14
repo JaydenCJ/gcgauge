@@ -9,7 +9,7 @@ description = "Parses JVM GC logs into pause percentiles, heap trends, and leak 
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "JaydenCJ" }]
+authors = [{ name = "JaydenCJ", email = "aisingioro.kiyon@gmail.com" }]
 keywords = ["jvm", "gc", "garbage-collection", "gc-log", "performance", "percentiles", "memory-leak", "cli"]
 classifiers = [
     "Development Status :: 3 - Alpha",
